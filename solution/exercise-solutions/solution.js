@@ -21,7 +21,7 @@ const section2OutputDiv = document.getElementById("section-2-output");
 
 // Exercise 1 - Solution
 // Uncomment code block below to see it run in web browser Developer Console
-/*
+
   function syncFunction() {
     console.log("Synchronous Function Start");
     console.log(1);
@@ -40,7 +40,7 @@ const section2OutputDiv = document.getElementById("section-2-output");
 
   syncFunction();
   asyncFunction();
-*/
+
 
 // Expected Output:
 // Synchronous Function Start

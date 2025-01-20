@@ -19,12 +19,25 @@ const section2OutputDiv = document.getElementById("section-2-output");
   Observe the order of execution.
 */
 
-let placeholder = `Delete
-                   Me
-                   And
-                   Code
-                   Here
-`;
+/* function syncFunction() {
+  console.log('sync start')
+  console.log(1)
+  console.log(2)
+  console.log(3)
+  console.log('sync end')
+}
+
+async function asyncFunction() {
+  console.log('async start')
+  setTimeout(() => {console.log(1)}, 0);
+  setTimeout(() => {console.log(2)}, 0);
+  setTimeout(() => {console.log(3)}, 0);
+  console.log('async end')
+
+}
+
+syncFunction()
+asyncFunction() */
 
 /*
   Exercise 2: Callback Function Example
@@ -40,12 +53,23 @@ let placeholder = `Delete
   #exercise-2-btn is clicked.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+/* let ex2button = document.getElementById('exercise-2-btn')
+let data;
+function getDataCallback(callback){
+  section2OutputDiv.textContent = callback
+}
+
+ex2button.addEventListener(
+  "click",
+  () => {
+      data = "this is ex2 callback data"
+      setTimeout(() => {
+        getDataCallback(data)
+      }, 500);
+
+
+  }
+) */
 
 /*
   Exercise 3: The Callback Pyramid of Doom
@@ -58,12 +82,40 @@ placeholder = `Delete
   Discuss how this leads to the "Callback Pyramid of Doom".
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+/* let ex3button = document.getElementById('exercise-3-btn')
+function callback1(callback) {
+  setTimeout(() => {
+    console.log('welcome to callback hell, please enjoy your stay')
+    console.log('function 1 complete')
+    callback()
+  }, 1000);
+}
+
+function callback2(callback) {
+  setTimeout(() => {
+    console.log('function 2 complete')
+    callback()
+  }, 1000);
+}
+
+function callback3(callback) {
+  setTimeout(() => {
+    console.log('function 3 complete')
+    callback()
+  }, 1000);
+  
+}
+
+function callbackhell() {
+  callback1(() => {
+    callback2(() => {
+      callback3(() => {
+      })
+    })
+  })
+}
+
+callbackhell() */
 
 /*
   Exercise 4: Creating a Promise
@@ -81,12 +133,27 @@ placeholder = `Delete
 
 // Exercise 4 - Solution
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+/* let ex4button = document.getElementById('exercise-4-btn')
+const ex4resolve = "this is exercise 4 data" */
+
+/* function getDataPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data2 = {id: 1, name: "max vontz"};
+      resolve(data2);
+    }, 1200);
+  });
+} */
+
+/* ex4button.addEventListener(
+  "click",
+  () => {
+    getDataPromise()
+    .then((resolvedPromise) => {
+      section2OutputDiv.textContent = JSON.stringify(resolvedPromise)
+  });
+  }
+) */
 
 /*
   Exercise 5: Promise States
@@ -102,12 +169,25 @@ placeholder = `Delete
   demonstrate the rejected state.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+//Pending means the request for a promise has been initiated but it has not been 
+//resolved or rejected
+
+//fulfilled means the request for a promise has been resolved
+
+//rejected means that the promise failed to resolve.
+
+/* function intentionalFailure() {
+  return new Promise((resolve, reject) => {
+    const failedPromise = ('this promise has been rejected')
+    setTimeout(() => {
+      reject(failedPromise)
+    }, 1700);
+  }
+)}
+
+getDataPromise()
+.then(() => intentionalFailure())
+.catch(error => console.error(`error msg: ${error}`)) */
 
 /*
   Exercise 6: Consuming Promises with then, catch, and finally
@@ -121,12 +201,19 @@ placeholder = `Delete
   - getDataPromise().then().catch().finally()
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+/* function intentionalFailure() {
+  return new Promise((resolve, reject) => {
+    const failedPromise = ('this promise has been rejected')
+    setTimeout(() => {
+      reject(failedPromise)
+    }, 1700);
+  }
+)}
+
+getDataPromise()
+.then(() => intentionalFailure())
+.catch(error => console.error(`error msg: ${error}`))
+.finally(() => console.log('Operation completed')) */
 
 /*
   Exercise 7: Chaining Promises
@@ -141,12 +228,38 @@ placeholder = `Delete
   #exercise-7-btn is clicked.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex7button = document.getElementById('exercise-7-btn')
+
+/* function processData(data) {
+  return new Promise((resolve, reject) => {
+    let dataEx7 = JSON.stringify(data)
+    setTimeout(() => {
+      resolve(dataEx7);
+    }, 500);
+  })
+} */
+
+
+ex7button.addEventListener(
+  "click",
+  () => {
+  getDataPromise()
+  .then(data => processData(data))
+  .then(output => section2OutputDiv.textContent = output)
+  }
+) 
+
+
+
+
+//.then(response => console.log(JSON.stringify(response)))
+//.then(data => console.log(data))
+//.then(abc => processData(abc))
+
+//.then(output => console.log(output))
+
+
+
 
 /*
   Exercise 8: Handling Errors in Promise Chains
@@ -160,13 +273,38 @@ placeholder = `Delete
   Display the returned data in the #section-2-output div when the 
   #exercise-8-btn is clicked.
 */
+/* let ex8button = document.getElementById('exercise-8-btn')
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+
+
+ function processData(data) {
+  return new Promise((resolve, reject) => {
+    let dataEx7 = JSON.stringify(data)
+    dataProcessed = false
+    if(dataProcessed){
+    setTimeout(() => {
+      resolve(dataEx7);
+    }, 500);}
+
+    else if(!dataProcessed) {
+      setTimeout(() => {
+        reject("ex8 error rejection message");
+      }, 500);
+    }
+  })
+}
+
+ex8button.addEventListener(
+  "click",
+  () => {
+    getDataPromise()
+    .then(data => processData(data))
+    .then(output => section2OutputDiv.textContent = output)
+    .catch(error => console.error(`${error}`))
+  }
+) */
+
+
 
 /*
   Exercise 9: Using async and await
@@ -181,12 +319,44 @@ placeholder = `Delete
   #exercise-9-btn is clicked.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex9button = document.getElementById('exercise-9-btn')
+
+function getDataPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data2 = {id: 1, name: "max vontz"};
+      resolve(data2);
+    }, 1200);
+  });
+}
+
+async function processData() {
+  
+    const incData = await getDataPromise();
+    let dataEx7 = JSON.stringify(incData)
+    dataProcessed = true
+    if(dataProcessed){
+    setTimeout(() => {
+      section2OutputDiv.textContent = (dataEx7)
+    }, 500);}
+
+    else if(!dataProcessed) {
+      setTimeout(() => {
+        throw new Error("Erorr in promise chain, this is bad because it doesnt tell you which fxn it came from.")
+      }, 500);
+    }
+  
+}
+
+
+ex9button.addEventListener(
+  "click",
+  () => {
+  getDataPromise()
+  processData()
+  
+  }
+) 
 
 /*
   Exercise 10: Sequential API Requests with async/await
@@ -200,12 +370,46 @@ placeholder = `Delete
   Display both posts in the #section-1-output div.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex10button = document.getElementById('exercise-10-btn')
+
+/* async function fetchOne() {
+  fetch('https://jsonplaceholder.typicode.com/posts/5')
+  .then(response => response.json())
+  .then(final => console.log(final))
+
+}
+
+async function fetchTwo(){
+  fetch('https://jsonplaceholder.typicode.com/posts/6')
+  .then(response => response.json())
+  .then(final => console.log(final))
+
+
+}
+
+async function displayFetch(){
+  let fetch1 = await fetchOne()
+  let fetch2 = await fetchTwo()
+
+  JSON.stringify(fetch1, fetch2)
+  section1OutputDiv.textContent = fetch1, fetch2
+} */
+
+ex10button.addEventListener(
+  "click",
+  async () => {
+    const response1 = await fetch("https://jsonplaceholder.typicode.com/posts/5");
+    const post1 = await response1.json();
+
+
+    const response2 = await fetch('https://jsonplaceholder.typicode.com/posts/6');
+    const post2 = await response2.json()
+
+
+  
+    section1OutputDiv.textContent = JSON.stringify({ post1, post2 }, null , 2)
+  }
+)
 
 /*
   Exercise 11: Parallel API Requests with Promise.all
