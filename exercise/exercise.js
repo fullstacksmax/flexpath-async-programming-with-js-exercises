@@ -422,12 +422,24 @@ ex10button.addEventListener(
   display the results.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex11button = document.getElementById('exercise-11-btn')
+
+ex11button.addEventListener(
+  "click",
+   async () => {
+    const response1 =  await fetch('https://jsonplaceholder.typicode.com/posts/10')
+    const promise1 =  Promise.resolve(response1.json())
+    console.log(promise1)
+    const response2 =  await fetch('https://jsonplaceholder.typicode.com/posts/15')
+    const promise2 =  Promise.resolve(response2.json())
+    console.log(promise2)
+     Promise.all([promise1, promise2])
+    .then((values) => {
+      section1OutputDiv.textContent = JSON.stringify(values, null, 2)
+    }) 
+    
+  }
+)
 
 /*
   Exercise 12: Using Promise.race
