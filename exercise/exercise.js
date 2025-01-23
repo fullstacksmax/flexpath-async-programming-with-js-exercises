@@ -454,12 +454,24 @@ ex11button.addEventListener(
   when the #exercise-12-btn is clicked.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex12button = document.getElementById('exercise-12-btn')
+
+ex12button.addEventListener(
+  "click",
+  async () => {
+    const response1 = await fetch("https://jsonplaceholder.typicode.com/posts/16").then((response1) => response1.json())
+    const promise1 = Promise.resolve(response1)
+    const response2 = await fetch("https://jsonplaceholder.typicode.com/posts/20").then((response2) => response2.json())
+    const promise2 = Promise.resolve(response2)
+
+    Promise.race([promise1, promise2])
+    .then((values) => {
+      section1OutputDiv.textContent = JSON.stringify(values, null, 2);
+    })
+  }
+
+  
+)
 
 /*
   Exercise 13: Using Promise.allSettled
