@@ -536,7 +536,7 @@ exercise14btn.addEventListener("click", async () => {
 
 // Exercise 15 - solution
 // Uncomment code block below to see it run in web browser Developer Console
-/*
+
   window.addEventListener("unhandledrejection", (event) => {
     console.error("Unhandled Rejection:", event.reason);
   });
@@ -545,7 +545,7 @@ exercise14btn.addEventListener("click", async () => {
   const rejectedPromise = new Promise((resolve, reject) => {
     reject("Promise was rejected without a catch");
   });
-*/
+
 
 // Not adding a .catch() to handle the rejection
 

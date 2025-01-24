@@ -488,12 +488,25 @@ ex12button.addEventListener(
   in #section-1-output.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex13button = document.getElementById('exercise-13-btn')
+
+ex13button.addEventListener(
+  "click",
+  async () => {
+    const urls = [
+  "https://jsonplaceholder.typicode.com/posts/23",
+  "https://jsonplaceholder.typicode.com/invalid-url",
+  "https://jsonplaceholder.typicode.com/posts/25"]
+    
+    const promises = urls.map((url) => fetch(url).then((res) => res.json()));
+
+    const results = await Promise.allSettled(promises)
+
+    section1OutputDiv.textContent = JSON.stringify(results, null, 2)
+  })
+
+
+
 
 /*
   Exercise 14: Using Promise.any
@@ -509,12 +522,23 @@ placeholder = `Delete
     - "https://jsonplaceholder.typicode.com/posts/2"
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+let ex14button = document.getElementById('exercise-14-btn')
+
+ex14button.addEventListener(
+  "click",
+  async () => {
+    const urls = [
+      "https://jsonplaceholder.typicode.com/invalid-url",
+      "https://jsonplaceholder.typicode.com/invalid-url2",
+      "https://jsonplaceholder.typicode.com/posts/2"]
+
+    const promises = urls.map((url) => fetch(url).then((response) => response.json()))
+
+    const results = await Promise.any((promises));
+
+    section1OutputDiv.textContent = `first response ${JSON.stringify(results, null, 2)}` 
+  }
+)
 
 /*
   Exercise 15: Handling Rejected Promises Globally
@@ -527,12 +551,14 @@ placeholder = `Delete
   Test it by creating a rejected promise without a catch block.
 */
 
-placeholder = `Delete
-               Me
-               And
-               Code
-               Here
-`;
+/* window.addEventListener('unhandledrejection', (event) => {
+  console.error(`there was an error ${event.reason}`);
+})
+
+const rejectedPromise = new Promise((resolve,reject) => {
+  reject("Promise was rejected without a catch");
+  
+}) */
 
 /*
   Exercise 16: Combining Promises and Async/Await
